@@ -2,7 +2,7 @@ import { Todos } from "@/types/type";
 
 const getTodo = async (): Promise<Todos[]> => {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_LOCAL_URL}/api/todos`
+    `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/todos`
   );
   const { todos } = await response.json();
   return todos;
@@ -10,7 +10,7 @@ const getTodo = async (): Promise<Todos[]> => {
 
 const toggleTodo = async ({ id, isDone }: { id: string; isDone: boolean }) => {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_LOCAL_URL}/api/todos/${id}`,
+    `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/todos/${id}`,
     {
       method: "PATCH",
       headers: {
@@ -24,7 +24,7 @@ const toggleTodo = async ({ id, isDone }: { id: string; isDone: boolean }) => {
 };
 
 const deleteTodo = async ({ id }: { id: string }) => {
-  await fetch(`${process.env.NEXT_PUBLIC_LOCAL_URL}/api/todos/${id}`, {
+  await fetch(`${process.env.NEXT_PUBLIC_VERCEL_URL}/api/todos/${id}`, {
     method: "DELETE",
     body: JSON.stringify({ id }),
   });

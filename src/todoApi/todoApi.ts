@@ -1,25 +1,30 @@
 import { Todos } from "@/types/type";
 
 const getTodo = async (): Promise<Todos[]> => {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_LOCAL_URL}`);
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_LOCAL_URL}/api/todos`
+  );
   const { todos } = await response.json();
   return todos;
 };
 
 const toggleTodo = async ({ id, isDone }: { id: string; isDone: boolean }) => {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_LOCAL_URL}/${id}`, {
-    method: "PATCH",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ id, isDone: !isDone }),
-  });
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_LOCAL_URL}/api/todos/${id}`,
+    {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ id, isDone: !isDone }),
+    }
+  );
   const toggledTodo = await response.json();
   return toggledTodo;
 };
 
 const deleteTodo = async ({ id }: { id: string }) => {
-  await fetch(`${process.env.NEXT_PUBLIC_LOCAL_URL}/${id}`, {
+  await fetch(`${process.env.NEXT_PUBLIC_LOCAL_URL}/api/todos/${id}`, {
     method: "DELETE",
     body: JSON.stringify({ id }),
   });

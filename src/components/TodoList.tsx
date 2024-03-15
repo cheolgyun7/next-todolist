@@ -25,11 +25,11 @@ const TodoList: React.FC<TodoListProps> = ({ isDone, todos }) => {
         ?.filter((item) => item.isDone === isDone)
         ?.map((todo: Todos) => (
           <div key={todo.id} className="flex items-center justify-between mt-4">
-            <div>
-              <div className="max-w-[180px] font-semibold whitespace-nowrap overflow-hidden text-ellipsis">
+            <div className="cursor-pointer">
+              <div className="w-[180px] font-semibold whitespace-nowrap overflow-hidden text-ellipsis">
                 {todo.title}
               </div>
-              <div className="max-w-[180px] text-gray-600 whitespace-nowrap overflow-hidden text-ellipsis">
+              <div className="w-[180px] text-gray-600 whitespace-nowrap overflow-hidden text-ellipsis">
                 {todo.contents}
               </div>
             </div>
